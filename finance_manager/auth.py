@@ -42,9 +42,10 @@ def login():
             SELECT * FROM users WHERE username= ? AND password=?
                        ''',(username,password))
         user = cursor.fetchone()
+        
         if user:
             print(f"Welcome {username}!")
-            return True
+            return user[0]
         else:
             print("Invalid credentials.")
             return False
