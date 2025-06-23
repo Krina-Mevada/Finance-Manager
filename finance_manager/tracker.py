@@ -1,5 +1,6 @@
 from finance_manager.database import get_db_connection
 
+#to add income/expense transactions
 def add_transaction(user_id,amount,type,category):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -13,6 +14,7 @@ def add_transaction(user_id,amount,type,category):
     conn.close()
     print(f"\n{type} of ₹{amount} added successfully under category '{category}'.")
 
+#to view all transactions
 def view_transactions(user_id):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -31,6 +33,7 @@ def view_transactions(user_id):
     else:
         print("\nNo Transactions found!!")
 
+#to update transactions
 def update_transactions(id,user_id,amount,type,category):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -49,6 +52,7 @@ def update_transactions(id,user_id,amount,type,category):
     conn.commit()
     conn.close()
 
+#to delete transaction
 def delete_transactions(user_id, id):
     conn = get_db_connection()
     cursor = conn.cursor()
