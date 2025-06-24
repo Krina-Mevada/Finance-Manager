@@ -1,7 +1,21 @@
 from finance_manager.database import get_db_connection
-
+from finance_manager.database import get_budget, get_total_expense_for_category
 #to add income/expense transactions
 def add_transaction(user_id,amount,type,category):
+
+    #check budget if expense
+    if type == "Expense":
+        date = input("Enter date (YYYY-MM-DD): ")
+        month = date[:7]
+        budget = get_budget(user_id, category, month)
+        spent = get_total_expense_for_category(user_id, category, month)
+        projected_total = amount + spent
+
+        if budget is not None and projected_total > budget:
+            print("warning: This will exceed your budget!")
+            print(f"Budget: {budget:.2f}\nSpent so far: {spent:.2f}\nNow total is: {projected_total:.2f}")
+
+    #insert the transaction
     conn = get_db_connection()
     cursor = conn.cursor()
 
