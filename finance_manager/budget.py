@@ -1,7 +1,7 @@
 from finance_manager import database
 
 def set_budget(user_id):
-    category = input("Enter category: ")
+    category = input("Enter category: ").lower()
     month = input("Enter month (YYYY-MM): ")
     amount = float(input("Enter budget amount: "))
 
@@ -10,7 +10,7 @@ def set_budget(user_id):
 
 def view_budget(user_id):
     category = input("Enter category: ")
-    month = input("Enter month (YYYY-MM): ")
+    month = input("Enter month (YYYY-MM): ").lower()
     budget = database.get_budget(user_id, category, month)
     spent = database.get_total_expense_for_category(user_id, category, month)
 
@@ -25,7 +25,7 @@ def view_budget(user_id):
     print("=====================\n")
 
 def delete_budget(user_id):
-    category = input("Enter category: ")
+    category = input("Enter category: ").lower()
     month = input("Enter month (YYYY-MM): ")
     amount = float(input("Enter budget amount: "))
     database.delete_budget(user_id,category,month,amount)

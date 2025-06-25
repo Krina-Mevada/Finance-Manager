@@ -1,5 +1,6 @@
 from finance_manager.database import get_db_connection
 from finance_manager.database import get_budget, get_total_expense_for_category
+
 #to add income/expense transactions
 def add_transaction(user_id,amount,type,category):
 
