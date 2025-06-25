@@ -1,3 +1,4 @@
 myenv
 __pycache__/
 finance_manager.db
+/backup/*.db
