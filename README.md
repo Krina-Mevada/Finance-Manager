@@ -41,6 +41,9 @@ A command-line based finance tracking tool built with Python + SQLite.
 
 ## ✅ Running Tests
 
+prerequisites:
+pip install pytest
+
 To run all unit tests:
 
 "python -m unittest discover tests"
