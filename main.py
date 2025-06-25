@@ -3,8 +3,12 @@ from finance_manager.database import create_transactions_table, create_budget_ta
 from finance_manager.tracker import add_transaction, view_transactions,update_transactions,delete_transactions
 from finance_manager.report import generate_report
 from finance_manager import budget
+from finance_manager.backup import auto_backup, auto_restore
 
 def main():
+
+    #restore database
+    auto_restore()
 
     #auto creates transaction table
     create_transactions_table()
@@ -45,13 +49,13 @@ def main():
                     #add income amount
                     if choice == '1':
                         amount = float(input("Enter Income Amount: "))
-                        category = input("Enter category (e.g. Salary, Bonus): ")
+                        category = input("Enter category (e.g. Salary, Bonus): ").lower()
                         add_transaction(user_id,amount,"Income",category)
                     
                     #add expense amount
                     elif choice == '2':
                         amount = float(input("Enter Expense Amount: "))
-                        category = input("Enter category (e.g. Grocery, Travel): ")
+                        category = input("Enter category (e.g. Grocery, Travel): ").lower()
                         add_transaction(user_id,amount,"Expense",category)
                     
                     #to view transaction
@@ -62,7 +66,7 @@ def main():
                     elif choice == '4':
                         id = int(input("Enter Transaction ID to update: "))
                         amount = float(input("Enter Income/Expense Amount: "))
-                        category = input("Enter category (e.g. Salary, Bonus): ")
+                        category = input("Enter category (e.g. Salary, Bonus): ").lower()
                         type = input("Enter type - Income or Expense: ")
                         update_transactions(id,user_id,amount,type,category)
 
@@ -91,9 +95,10 @@ def main():
                         budget.view_budget(user_id)
                     
                     elif choice == '10':
-                        budget.delete_budget(user_id)
+                        budget.delete_budget(user_id,category,month,amount)
                     
                     elif choice == '11':
+                        auto_backup()
                         print("Exiting Finance Manager. Goodbye!")
                         break
 
